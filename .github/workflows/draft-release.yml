@@ -1,0 +1,17 @@
+name: Create/update draft release
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  update_draft_release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: release-drafter/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: pinio/draft-semver@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
